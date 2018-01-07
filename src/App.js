@@ -103,7 +103,7 @@ class App extends Component {
     }
     return (
       <div className={this.state.mode}>
-        <SearchForm onChange={e => this.setState({...this.state, text: e})}
+        <SearchForm onChange={e => this.setState({text: e})}
                     onSubmit={e => this.handleSearch(e, this.state.text)}
                     onCancel={e => this.handleCancel(this.state.text)}
         />
@@ -114,17 +114,13 @@ class App extends Component {
 
   handleSearch(event, what) {
     event.preventDefault();
-    this.setState({...this.state, loading: true});
+    this.setState({loading: true});
     // Fake a slow server to highlight the "loading" state
     this.XHR = setTimeout(() => {
       this.business.search(what)
         .then(results => {
           console.log(results);
-          this.setState({
-            ...this.state,
-            loading: false,
-            results: results
-          });
+          this.setState({loading: false, results: results});
         });
     }, Math.random() ** 4 * 3000); // mostly short requests, but intermittent "slowness"
   }
@@ -135,20 +131,17 @@ class App extends Component {
       clearTimeout(this.XHR);
       this.XHR = null;
     }
-    this.setState({
-      ...this.state,
-      loading: false
-    });
+    this.setState({loading: false});
   }
 
   handleZoom(what) {
     console.log("Zooming image number", what);
-    this.setState({...this.state, selectedImage:  what});
+    this.setState({selectedImage:  what});
   }
 
   handleUnzoom() {
     console.log("Unzooming");
-    this.setState({...this.state, selectedImage:  ""});
+    this.setState({selectedImage:  ""});
   }
 }
 
