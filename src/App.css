@@ -1,28 +1,130 @@
-.App {
-  text-align: center;
+*, *:before, *:after {
+  position: relative;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: top;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+#root {
+    width: 40rem;
+}
+
+form {
+    padding: 2em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+input[type=search] {
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: none;
+  font-size: 2rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+input[type=search]:focus {
+  outline: none;
+}
+
+
+input[type=submit], input[type=button] {
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  appearance: none;
+  border: none;
   color: white;
+  height: 3rem;
+  padding: 0 3rem;
+  border-radius: 3rem;
+  margin: 0 1rem;
+  background-color: #555;
 }
 
-.App-title {
-  font-size: 1.5em;
+
+input[type=submit] {
+  background-color: #EB7452;
+}
+input[type=button] {
 }
 
-.App-intro {
-  font-size: large;
+input[type=submit][disabled], input[type=button][disabled] {
+  opacity: 0.5;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  flex-shrink: 1;
+  overflow-y: scroll;
+  margin: 0 -.25rem;
+}
+.results:hover > img {
+  opacity: 0.7;
+}
+.results:hover > img:hover {
+    opacity: 1;
+}
+
+  @keyframes item {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+.results>img {
+  display: block;
+  height: 10rem;
+  width: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin: .25rem;
+  animation: item .2s calc(var(--i, 0) * .02s) cubic-bezier(.5, 0, .2, 1) both;
+  background-color: #EEE;
+}
+
+.zoomed-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ui-photo {
+  height: auto;
+  width: auto;
+  min-height: 50vh;
+  min-width: 50vw;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
+
+.results > img {
+    display: inline-block;
 }
