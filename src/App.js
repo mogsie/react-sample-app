@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import fetchJsonp from 'fetch-jsonp';
+/*
+ * A business object with a search function that returns a promise of
+ * an array of images from flickr.
+ */
+class BusinessObject {
+  search(string) {
+    return fetchJsonp(
+        `https://api.flickr.com/services/feeds/photos_public.gne?lang=en-us&format=json&tags=${string}`,
+        { jsonpCallback: 'jsoncallback' })
+        .then(res => res.json())
+        .then(data => data.items);
+  }
+  cancel(string) {
+    // Awaiting cancelable fetch()...
+  }
+}
 
 class App extends Component {
   render() {
